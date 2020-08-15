@@ -3,19 +3,10 @@ class Vehicle {
     this.registrationNumber = registrationNumber;
     this.color = color;
     this.size = size;
-    this.slot = 0
   }
 
   getRegistration() {
     return this.registrationNumber;
-  }
-
-  setSlot(slot) {
-    this.slot = slot;
-  }
-
-  getSlot() {
-    return this.slot;
   }
 
   getColor() {
@@ -28,7 +19,21 @@ class Vehicle {
 }
 
 class Car extends Vehicle {
-  constructor(registrationNumber, size, color) {
+  constructor(registrationNumber, size='medium', color='red') {
+    this.carSlots = {}
     super(registrationNumber, size, color);
   }
+
+  setCarSlot(regNo, slot) {
+    this.carSlots[regNo] = slot;
+  }
+
+  leaveCarSlot(regNo) {
+    delete this.carSlots[regNo]
+  }
+}
+
+module.exports = {
+  Vehicle,
+  Car
 }

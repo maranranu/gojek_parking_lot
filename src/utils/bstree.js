@@ -49,10 +49,10 @@ class TreeHashMap {
     return node;
   }
 
-  getMaxKey() {
+  getMaxNode() {
     let maxNode = this._maxNode(this.root);
     if (maxNode !== null) {
-      return maxNode.key;
+      return maxNode;
     }
     return maxNode;
   }

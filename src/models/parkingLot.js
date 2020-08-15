@@ -3,20 +3,29 @@ const TreeHashMap = require('../utils/bstree');
 class ParkingSlot {
   constructor() {
     this.MAX_SLOT_SIZE = 0;
-    this.slots = {};
+    this.occupiedSlots = new TreeHashMap();
+    this.freeSlots = new TreeHashMap();
   }
 
   create(size) {
     this.MAX_SLOT_SIZE = size;
-    this.slots = new TreeHashMap();
+    _assignFreeSlots(size);
   }
-  
+
+  _assignFreeSlots(size) {
+    for (let i = 1; i <= size; i++) {
+      this.freeSlots.set(i, 'free slot');
+    }
+  }
+
   setSlots(slot, value) {
-    this.slots.set(slot, value);
+    this.occupiedSlots.set(slot, value);
+    this.freeSlots.remove(slot);
   }
 
   delSlots(slot) {
-    this.slots.remove(slot);
+    this.occupiedSlots.remove(slot);
+    this.freeSlots.set(slot, 'free slot');
   }
 
   isSlotEmpty() {
@@ -24,10 +33,16 @@ class ParkingSlot {
   }
 
   isSlotFull() {
-    return this.slots.length <= this.MAX_SLOT_SIZE;
+    return this.occupiedSlots.length <= this.MAX_SLOT_SIZE;
   }
 
-  getSlots() {
-    return this.slots.getAll();
+  getOccupiedSlots() {
+    return this.occupiedSlots.getAll();
+  }
+
+  getNearestFreeSlot() {
+    return this.occupiedSlots.getMinKey()
   }
 }
+
+module.exports = ParkingSlot;

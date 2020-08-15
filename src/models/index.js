@@ -1,7 +1,8 @@
-const ParkingLot = require('./parkingLot');
+const {Car} = require('./vehicle');
 
 module.exports = {
-  ParkingLot: new ParkingLot().singleton(),
-  Vehicle: require('./vehicle'),
-  ticket: require('./ticket')
+  ParkingLot: require('./parkingLot'),
+  Car: Car,
+  Ticket: require('./ticket'),
+  Payment: require('./payment')
 }
