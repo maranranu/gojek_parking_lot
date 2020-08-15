@@ -135,13 +135,4 @@ class TreeHashMap {
   }
 };
 
-let tree = new TreeHashMap()
-tree.set(1, 1)
-tree.set(3, 3)
-tree.set(10, 10)
-tree.set(5, 5)
-tree.set(4, 4)
-tree.set(2, 2)
-tree.set(8, 8)
-
-//module.exports = TreeHashMap;
+module.exports = TreeHashMap;
