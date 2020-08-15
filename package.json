@@ -1,0 +1,19 @@
+{
+  "name": "parking_lot_2.0.0",
+  "version": "1.0.0",
+  "description": "Parking lot system",
+  "main": "src/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "test": ""
+  },
+  "author": "Kamnee Maran",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
