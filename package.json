@@ -7,13 +7,15 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js",
-    "test": ""
+    "test": "",
+    "start": "node src/index.js"
   },
   "author": "Kamnee Maran",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.2.0"
+    "binary-heap": "^1.1.0",
+    "chai": "^4.2.0",
+    "colors": "^1.4.0",
+    "treemap-js": "^1.2.1"
   }
 }
