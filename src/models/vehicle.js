@@ -20,8 +20,8 @@ class Vehicle {
 
 class Car extends Vehicle {
   constructor(registrationNumber, size='medium', color='red') {
-    this.carSlots = {}
     super(registrationNumber, size, color);
+    this.carSlots = {}
   }
 
   setCarSlot(regNo, slot) {

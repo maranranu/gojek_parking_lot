@@ -80,6 +80,7 @@ class TreeHashMap {
   }
 
   remove(key) {
+    console.log('removed ', key);
     this._remove(key, this.root)
   }
 

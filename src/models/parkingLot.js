@@ -9,7 +9,7 @@ class ParkingSlot {
 
   create(size) {
     this.MAX_SLOT_SIZE = size;
-    _assignFreeSlots(size);
+    this._assignFreeSlots(size);
   }
 
   _assignFreeSlots(size) {
@@ -33,15 +33,19 @@ class ParkingSlot {
   }
 
   isSlotFull() {
-    return this.occupiedSlots.length <= this.MAX_SLOT_SIZE;
+    return this.occupiedSlots.length >= this.MAX_SLOT_SIZE;
   }
 
   getOccupiedSlots() {
     return this.occupiedSlots.getAll();
   }
 
+  getFreeSlots() {
+    return this.freeSlots.getAll();
+  }
+
   getNearestFreeSlot() {
-    return this.occupiedSlots.getMinKey()
+    return this.freeSlots.getMinKey()
   }
 }
 

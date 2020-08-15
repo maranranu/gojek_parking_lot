@@ -9,5 +9,9 @@ module.exports = {
     CASH: 0,
     CARD: 1,
     UPI: 2
+  },
+  COMMANDLINE: {
+    FILE: 'file',
+    COMMAND: 'command'
   }
 }
