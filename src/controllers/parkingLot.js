@@ -1,4 +1,4 @@
-const {ParkingLot, Car, Ticket} = require('../models');
+const {ParkingLot, Car, Ticket, Payment} = require('../models');
 const {hashCode, paymentMode} = require('../utils/helpers');
 
 class ParkingLotController {
@@ -24,7 +24,7 @@ class ParkingLotController {
     }
   }
 
-  parkCar(registrationNumber) {
+  parkCar(registrationNumber, color, size) {
     if (this.parkingLot.isSlotEmpty()) {
       throw new Error(`No Slot alloted`);
     } else if (this.parkingLot.isSlotFull()) {
@@ -35,7 +35,7 @@ class ParkingLotController {
       const slot = this.parkingLot.getNearestFreeSlot();
       if (slot) {
         const ticketId = hashCode(registrationNumber);
-        const carObject = new Car(registrationNumber);
+        const carObject = new Car(registrationNumber, color=color, size=size);
         carObject.setCarSlot(registrationNumber, slot);
         const ticketObj = new Ticket(ticketId, carObject);
         this.parkingDetails[registrationNumber] = {
@@ -55,7 +55,7 @@ class ParkingLotController {
     if (this.parkingLot.isSlotEmpty()) {
       throw new Error(`No Slot alloted`);
     } else if (!(registrationNumber in this.parkingDetails)) {
-      throw new Error(`Car ${registrationNumber} was not parked to any slot`);
+      throw new Error(`Registration number ${registrationNumber} not found`);
     } else {
       const parkingObj = this.parkingDetails[registrationNumber];
       parkingObj.ticket.setExitTime(hour);
@@ -65,12 +65,20 @@ class ParkingLotController {
       parkingObj.vehicle.leaveCarSlot(registrationNumber);
       const paymentObj = new Payment(hashCode(registrationNumber), amount);
       delete this.parkingDetails[registrationNumber];
-      this.parkingLot.delSlot(parkingObj.slot);
+      this.parkingLot.delSlots(parkingObj.slot);
       return {
         regNo: registrationNumber,
         slot: parkingObj.slot,
         amount: amount
       };
+    }
+  }
+
+  getSlotByRegistration(registrationNumber) {
+    if (!(registrationNumber in this.parkingDetails)) {
+      throw new Error(`Registration number ${registrationNumber} not found`);
+    } else {
+      return this.parkingDetails[registrationNumber].slot;
     }
   }
 }

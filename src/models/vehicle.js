@@ -19,7 +19,7 @@ class Vehicle {
 }
 
 class Car extends Vehicle {
-  constructor(registrationNumber, size='medium', color='red') {
+  constructor(registrationNumber, color='red', size='medium') {
     super(registrationNumber, size, color);
     this.carSlots = {}
   }

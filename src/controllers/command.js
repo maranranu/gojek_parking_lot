@@ -6,7 +6,6 @@ Object.freeze(ParkingLotObj);
 const logger = require('../utils/logger');
 
 function commandHandling (commandType, commandArgs) {
-  console.log(commandType);
   switch(commandType) {
     case COMMANDS.CREATE_PARKING_LOT:
       try {
@@ -18,7 +17,7 @@ function commandHandling (commandType, commandArgs) {
       break;
     case COMMANDS.PARK:
       try {
-        const parkSlot = ParkingLotObj.parkCar(commandArgs[0]);
+        const parkSlot = ParkingLotObj.parkCar(...commandArgs);
         console.log(logger.success(`Allocated slot number: ${parkSlot}`));
       } catch (error) {
         console.log(logger.error(error.message));
@@ -44,6 +43,14 @@ function commandHandling (commandType, commandArgs) {
         console.log(logger.error(error.message));
       }
       break;
+    case COMMANDS.SLOT_NUMBER_BY_REGISTRATION:
+    try {
+      let slot = ParkingLotObj.getSlotByRegistration(commandArgs[0]);
+      console.log(logger.success(`Slot for Registration number ${commandArgs[0]} is ${slot}`));
+    } catch (error) {
+      console.log(logger.error(error.message));
+    }
+    break;
     default:
       throw new Error('Invalid command entered');
   }

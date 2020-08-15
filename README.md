@@ -10,3 +10,8 @@ Nodejs
 ## Setup
    - bin/setup : to install node packages and its dependencies and run test suite
    - bin/parking_lot : Run application and it takes an input file as an argument and prints the output on STDOUT
+
+## Complexity analysis
+  - Data structure: Binary search tree
+  - Worst case: O(n)
+  - Average Case O(logn)

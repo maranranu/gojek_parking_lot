@@ -15,7 +15,7 @@ class Ticket {
   getVehicle() {
     return this.vehicle
   }
-  
+
   setExitTime(hours) {
     this.exitAt = this.issuedAt + (2*60*60*1000);
   }
@@ -37,12 +37,8 @@ class Ticket {
   }
 
   calculateCost(hours) {
-    amount = 0;
-    if (hours <= 2) {
-      amount += 10
-    }
-    hours = hours - 2;
-    amount += (hours)*10
+    let remaining = hours < 2 ? 0 : hours - 2;
+    let amount = 10 + (remaining)*10
     return amount;
   }
 }

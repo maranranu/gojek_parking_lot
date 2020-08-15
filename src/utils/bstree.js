@@ -1,3 +1,4 @@
+//TO-DO, change this to heap tree to improve complexity
 class TreeHashMap {
   constructor() {
     this.root = null;
@@ -80,14 +81,14 @@ class TreeHashMap {
   }
 
   remove(key) {
-    console.log('removed ', key);
-    this._remove(key, this.root)
+    this.root = this._remove(key, this.root)
   }
 
   _remove(key, node) {
     if (node === null) {
       return null;
     }
+
     if (key < node.key) {
       node.left = this._remove(key, node.left);
     } else if (key > node.key) {

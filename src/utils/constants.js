@@ -3,7 +3,8 @@ module.exports = {
     CREATE_PARKING_LOT: 'create_parking_lot',
     PARK: 'park',
     LEAVE: 'leave',
-    STATUS: 'status'
+    STATUS: 'status',
+    SLOT_NUMBER_BY_REGISTRATION: 'slot_number_by_registration_number'
   },
   MODE: {
     CASH: 0,
