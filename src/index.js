@@ -6,7 +6,6 @@ let commandArg = args.splice(3,2);
 
 processCommand(interactiveMode, commandArg)
 .then((msg) => {
-  console.log(msg);
   process.exit();
 })
 .catch((err) => {

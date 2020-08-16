@@ -23,14 +23,6 @@ class Car extends Vehicle {
     super(registrationNumber, size, color);
     this.carSlots = {}
   }
-
-  setCarSlot(regNo, slot) {
-    this.carSlots[regNo] = slot;
-  }
-
-  leaveCarSlot(regNo) {
-    delete this.carSlots[regNo]
-  }
 }
 
 module.exports = {

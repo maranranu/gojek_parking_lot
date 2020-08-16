@@ -28,7 +28,7 @@ function commandHandling (commandType, commandArgs) {
         slots.forEach(slot => {
           output += `${slot.key}\t\t${slot.value}\n`;
         });
-        return { success: true, type: 'success', msg: output };
+        return { success: true, type: 'info', msg: output };
       } catch (error) {
         return { success: false, type: 'error', msg: error.message };
       }
@@ -50,7 +50,7 @@ function commandHandling (commandType, commandArgs) {
     }
     break;
     default:
-    return { success: false, type: 'error', msg: 'Invalid command entered' };
+    return { success: false, type: 'warning', msg: 'Invalid command entered' };
   }
 
 }

@@ -12,6 +12,10 @@ class ParkingSlot {
     this._assignFreeSlots(size);
   }
 
+  slotAvailable() {
+    return this.freeSlots.length();
+  }
+  
   reset() {
     this.MAX_SLOT_SIZE = 0;
     this.occupiedSlots = {};
@@ -26,7 +30,6 @@ class ParkingSlot {
 
   setSlots(slot, value) {
     this.occupiedSlots[slot] = value;
-    this.occupied += 1
     this.freeSlots.remove(slot);
   }
 

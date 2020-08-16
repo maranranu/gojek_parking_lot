@@ -49,7 +49,6 @@ class ParkingLotController {
       if (slot) {
         const ticketId = hashCode(registrationNumber);
         const carObject = new Car(registrationNumber, color=color, size=size);
-        carObject.setCarSlot(registrationNumber, slot);
         const ticketObj = new Ticket(ticketId, carObject);
         this.parkingDetails[registrationNumber] = {
           slot: slot,
@@ -75,7 +74,6 @@ class ParkingLotController {
       parkingObj.ticket.setTicketStatus(false);
       const amount = parkingObj.ticket.calculateCost(hour);
       parkingObj.ticket.setTicketCost(amount);
-      parkingObj.vehicle.leaveCarSlot(registrationNumber);
       const paymentObj = new Payment(hashCode(registrationNumber), amount);
       delete this.parkingDetails[registrationNumber];
       this.parkingLot.delSlots(parkingObj.slot);

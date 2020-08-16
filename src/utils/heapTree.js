@@ -8,10 +8,10 @@ class MinHeap {
   }
 
   length() {
-    return this.heap;
+    return this.heap.length;
   }
 
-  heapify(index) {
+  _heapify(index) {
     let smallest = index;
     let n = this.heap.length;
     let left = 2 * index + 1;
@@ -26,7 +26,7 @@ class MinHeap {
       let tmp = this.heap[index];
       this.heap[index] = this.heap[smallest];
       this.heap[smallest] = tmp;
-      this.heapify(smallest)
+      this._heapify(smallest)
     }
   }
 
@@ -37,7 +37,7 @@ class MinHeap {
     } else {
       this.heap.push(num);
       for (let i = (Math.floor((size / 2))) - 1; i > -1; i--) {
-        this.heapify(i)
+        this._heapify(i)
       }
     }
   }
@@ -59,7 +59,7 @@ class MinHeap {
     size = this.heap.length;
 
     for (let i = (Math.floor((size / 2))) - 1; i > -1; i--) {
-      this.heapify(i)
+      this._heapify(i)
     }
   }
 }

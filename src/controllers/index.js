@@ -4,7 +4,7 @@ const readline = require('readline');
 const {commandHandling} = require('./command');
 const logger = require('../utils/logger');
 
-function fileRead(fileName) {
+function _fileRead(fileName) {
   return new Promise((resolve, reject) => {
     const cwd = process.cwd();
     return fs.readFile(path.resolve(cwd, fileName), 'utf-8', (err, data) => {
@@ -17,7 +17,7 @@ function fileRead(fileName) {
   })
 }
 
-function processInteractiveConsole() {
+function _processInteractiveConsole() {
   return new Promise((resolve, reject) => {
     let input = readline.createInterface({
       input: process.stdin,
@@ -34,7 +34,7 @@ function processInteractiveConsole() {
       } else {
         let output = commandHandling(commandType, commandArgs);
         console.log(logger[output.type](output.msg));
-        processInteractiveConsole();
+        _processInteractiveConsole();
       }
     })
   })
@@ -43,7 +43,7 @@ function processInteractiveConsole() {
 async function processCommand(isInteractive, args) {
   try {
     if (!isInteractive) {
-      let lines = await fileRead(args[0])
+      let lines = await _fileRead(args[0])
       lines = lines.split('\n');
       for (let line = 0; line < lines.length; line++) {
         command = lines[line];
@@ -54,7 +54,7 @@ async function processCommand(isInteractive, args) {
         console.log(logger[output.type](output.msg));
       }
     } else {
-      return processInteractiveConsole();
+      return _processInteractiveConsole();
     }
   } catch (error) {
     throw error;
