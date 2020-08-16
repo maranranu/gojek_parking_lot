@@ -11,7 +11,11 @@ class ParkingLotController {
     if (slot <= 0) {
       throw new Error(`Invalid slot value ${slot}`)
     }
-    this.parkingLot.create(slot);
+    if (this.parkingLot.isSlotEmpty()) {
+      this.parkingLot.create(slot);
+    } else {
+      throw new Error(`Slot already created.`)  
+    }
     return slot;
   }
 
@@ -20,7 +24,14 @@ class ParkingLotController {
       throw new Error(`No Slot alloted`);
     } else {
       const slots = this.parkingLot.getOccupiedSlots();
-      return slots;
+      let result = [];
+      for (let key in slots) {
+        result.push({
+          key: key,
+          value: slots[key].getRegistration()
+        })
+      }
+      return result;
     }
   }
 

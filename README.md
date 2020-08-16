@@ -12,6 +12,6 @@ Nodejs
    - bin/parking_lot : Run application and it takes an input file as an argument and prints the output on STDOUT
 
 ## Complexity analysis
-  - Data structure: Binary search tree
-  - Worst case: O(n)
-  - Average Case O(logn)
+  - Data structure: Mimimum Heap Tree
+  - Insertion, removal : O(logn)
+  - Get minimum (nearest neighbour) O(1)

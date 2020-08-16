@@ -28,7 +28,7 @@ function commandHandling (commandType, commandArgs) {
         const slots = ParkingLotObj.getParkingStatus();
         console.log(logger.success('Slot No.\t\t\tRegistration No.'));
         slots.forEach(slot => {
-          console.log(logger.success(`${slot.key}\t\t\t${slot.value.getRegistration()}`));
+          console.log(logger.success(`${slot.key}\t\t\t${slot.value}`));
         });
       } catch (error) {
         console.log(logger.error(error.message));
