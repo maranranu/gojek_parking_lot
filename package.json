@@ -8,13 +8,17 @@
   },
   "scripts": {
     "test": "NODE_PATH=. mocha 'test/unit/src/**/*.spec.js'",
+    "coverage": "NODE_PATH=. istanbul cover mocha 'test/unit/src/**/*.spec.js'",
     "start": "node src/index.js"
   },
   "author": "Kamnee Maran",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0"
+  },
+  "devDependencies": {
     "chai": "^4.2.0",
-    "colors": "^1.4.0",
+    "istanbul": "^0.4.5",
     "mocha": "^8.1.1"
   }
 }

@@ -40,19 +40,21 @@ function _processInteractiveConsole() {
   })
 }
 
-async function processCommand(isInteractive, args) {
+function processCommand(isInteractive, args) {
   try {
     if (!isInteractive) {
-      let lines = await _fileRead(args[0])
-      lines = lines.split('\n');
-      for (let line = 0; line < lines.length; line++) {
-        command = lines[line];
-        let commandArgs = command.split(' ');
-        let commandType = commandArgs[0];
-        commandArgs.splice(0,1);
-        let output = commandHandling(commandType, commandArgs);
-        console.log(logger[output.type](output.msg));
-      }
+      return _fileRead(args[0])
+      .then((lines) => {
+        lines = lines.split('\n');
+        for (let line = 0; line < lines.length; line++) {
+          command = lines[line];
+          let commandArgs = command.split(' ');
+          let commandType = commandArgs[0];
+          commandArgs.splice(0,1);
+          let output = commandHandling(commandType, commandArgs);
+          console.log(logger[output.type](output.msg));
+        }
+      })
     } else {
       return _processInteractiveConsole();
     }
