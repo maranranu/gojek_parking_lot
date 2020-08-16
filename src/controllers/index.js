@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const {commandHandling} = require('./command');
+const logger = require('../utils/logger');
 
 function fileRead(fileName) {
   return new Promise((resolve, reject) => {
@@ -31,7 +32,8 @@ function processInteractiveConsole() {
         input.close();
         resolve();
       } else {
-        commandHandling(commandType, commandArgs);
+        let output = commandHandling(commandType, commandArgs);
+        console.log(logger[output.type](output.msg));
         processInteractiveConsole();
       }
     })
@@ -48,7 +50,8 @@ async function processCommand(isInteractive, args) {
         let commandArgs = command.split(' ');
         let commandType = commandArgs[0];
         commandArgs.splice(0,1);
-        commandHandling(commandType, commandArgs);
+        let output = commandHandling(commandType, commandArgs);
+        console.log(logger[output.type](output.msg));
       }
     } else {
       return processInteractiveConsole();

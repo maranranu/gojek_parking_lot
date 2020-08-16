@@ -7,15 +7,14 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "",
+    "test": "NODE_PATH=. mocha 'test/unit/src/**/*.spec.js'",
     "start": "node src/index.js"
   },
   "author": "Kamnee Maran",
   "license": "ISC",
   "dependencies": {
-    "binary-heap": "^1.1.0",
     "chai": "^4.2.0",
     "colors": "^1.4.0",
-    "treemap-js": "^1.2.1"
+    "mocha": "^8.1.1"
   }
 }

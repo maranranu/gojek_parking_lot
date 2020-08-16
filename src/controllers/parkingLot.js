@@ -14,7 +14,7 @@ class ParkingLotController {
     if (this.parkingLot.isSlotEmpty()) {
       this.parkingLot.create(slot);
     } else {
-      throw new Error(`Slot already created.`)  
+      throw new Error(`Slot already created.`)
     }
     return slot;
   }
@@ -36,7 +36,9 @@ class ParkingLotController {
   }
 
   parkCar(registrationNumber, color, size) {
-    if (this.parkingLot.isSlotEmpty()) {
+    if (!registrationNumber) {
+      throw new Error(`Registration number required to park a vehicle`);
+    } else if (this.parkingLot.isSlotEmpty()) {
       throw new Error(`No Slot alloted`);
     } else if (this.parkingLot.isSlotFull()) {
       throw new Error('Sorry, parking lot is full');

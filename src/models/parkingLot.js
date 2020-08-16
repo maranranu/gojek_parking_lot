@@ -12,6 +12,12 @@ class ParkingSlot {
     this._assignFreeSlots(size);
   }
 
+  reset() {
+    this.MAX_SLOT_SIZE = 0;
+    this.occupiedSlots = {};
+    this.freeSlots = new HeapTree();
+  }
+
   _assignFreeSlots(size) {
     for (let i = 1; i <= size; i++) {
       this.freeSlots.set(i);
@@ -26,7 +32,7 @@ class ParkingSlot {
 
   delSlots(slot) {
     delete this.occupiedSlots[slot];
-    this.freeSlots.set(slot, 'free slot');
+    this.freeSlots.set(slot);
   }
 
   isSlotEmpty() {
